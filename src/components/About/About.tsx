@@ -35,12 +35,7 @@ const About: React.FC = () => {
           justifyContent="space-between"
         >
           {/* Text Content */}
-          <Grid
-            item
-            xs={12}
-            md={6}
-
-          >
+          <Grid item xs={12} md={6}>
             <motion.div
               initial={{ opacity: 0, y: 50 }} // Start below and invisible
               animate={firstSectionInView ? { opacity: 1, y: 0 } : {}} // Animate when in view
@@ -103,29 +98,29 @@ const About: React.FC = () => {
           </Grid>
 
           {/* Floating Image */}
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={firstSectionInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              paddingTop: "0px !important", // Forzar eliminación del padding-top
+              marginTop: 0, // Si hay margin-top, también lo eliminamos por si acaso
+            }}
+          >
+            <iframe
+              src={
+                isMobile
+                  ? "https://my.spline.design/worldplanetcopy-22e4e4ba3ecda786ba342fc3786fe393/"
+                  : "https://my.spline.design/worldplanet-334b6371a45be1e8734eb4a3da0f21b8/"
+              }
               style={{
-                borderRadius: "50px",
-                overflow: "hidden",
                 width: "100%",
-                height: "auto",
+                height: isMobile ? "350px" : "600px", // Adjust height based on screen size
+                border: "none",
+                backgroundColor: "transparent",
               }}
-            >
-              <iframe
-                src="https://my.spline.design/worldplanet-334b6371a45be1e8734eb4a3da0f21b8/"
-                style={{
-                  width: "100%",
-                  height: isMobile ? "300px" : "600px", // Adjust height based on screen size
-                  border: "none",
-                  backgroundColor: "transparent",
-                }}
-                allow="fullscreen"
-              ></iframe>
-            </motion.div>
+              allow="fullscreen"
+            ></iframe>
           </Grid>
         </Grid>
       </Box>
@@ -143,14 +138,22 @@ const About: React.FC = () => {
           spacing={4}
           alignItems="center"
           justifyContent="space-between"
+          direction="column-reverse" // Ensure the image comes below the text
+          sx={{
+            flexDirection: { xs: "column-reverse", md: "row" }, // Stack on mobile
+          }}
         >
           {/* Floating Image */}
           <Grid item xs={12} md={6}>
             <iframe
-              src="https://my.spline.design/particlenebula-dae7209750ac2fc00de7880cab1472e7/"
+              src={
+                isMobile
+                  ? "https://my.spline.design/trailscopy-a484b8e0364891f87b962adcf84d06a6/"
+                  : "https://my.spline.design/trails-130eeddde06ffcaa1c246ca10126758b/"
+              }
               style={{
                 width: "100%",
-                height: isMobile ? "300px" : "600px", // Adjust height based on screen size
+                height: isMobile ? "350px" : "600px", // Adjust height based on screen size
                 border: "none",
                 backgroundColor: "transparent",
               }}
