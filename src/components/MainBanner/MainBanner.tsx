@@ -19,7 +19,7 @@ const MainBanner: React.FC = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }} // Start with opacity 0 and slight downward shift
+      initial={{ opacity: 0, y: 10 }} // Start with opacity 0 and slight downward shift
       animate={{ opacity: 1, y: 0 }} // Animate to full opacity and original position
       transition={{ duration: 1, ease: "easeOut" }} // Control the timing of the animation
     >
@@ -27,6 +27,7 @@ const MainBanner: React.FC = () => {
         sx={{
           height: "100vh",
           padding: { xs: 0, sm: "2rem" }, // No padding on mobile
+          mb: { xs: 0, md: "2rem" }
         }}
       >
         <Box
