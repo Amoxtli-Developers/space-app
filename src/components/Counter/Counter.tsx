@@ -37,9 +37,10 @@ const Counter: React.FC = () => {
   return (
     <Box
       sx={{
-        padding: { xs: "2rem", md: "4rem" },
+        mt: { xs: "4rem", md: "6rem" },
+        px: { xs: "2rem", md: "6rem" },
         textAlign: "center",
-        mb: { xs: 0, md: "2rem" },
+        mb: "4rem",
       }}
     >
       <Grid container spacing={4}>

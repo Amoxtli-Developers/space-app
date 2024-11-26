@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useRef } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import mainLogo from "@assets/logo/SVG/main.svg";
+import whiteLogo from "@assets/logo/SVG/white.svg";
 
 const About: React.FC = () => {
   // Refs for the two sections
@@ -15,13 +15,19 @@ const About: React.FC = () => {
   const firstSectionInView = useInView(firstSectionRef, { once: true });
   const secondSectionInView = useInView(secondSectionRef, { once: true });
 
+  const isMobile = useMediaQuery("(max-width:768px)");
+
   return (
-    <Box>
+    <Box
+      sx={{
+        backgroundColor: "#07020A",
+        minHeight: "100vh",
+        paddingTop: { xs: "2rem", md: "6rem" },
+        paddingBottom: { xs: "2rem", md: "6rem" },
+      }}
+    >
       {/* First Section */}
-      <Box
-        ref={firstSectionRef}
-        sx={{ padding: { xs: "2rem", md: "4rem" }, mb: { xs: 0, md: "2rem" } }}
-      >
+      <Box ref={firstSectionRef}>
         <Grid
           container
           spacing={4}
@@ -29,18 +35,24 @@ const About: React.FC = () => {
           justifyContent="space-between"
         >
           {/* Text Content */}
-          <Grid item xs={12} md={6}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+
+          >
             <motion.div
               initial={{ opacity: 0, y: 50 }} // Start below and invisible
               animate={firstSectionInView ? { opacity: 1, y: 0 } : {}} // Animate when in view
               transition={{ duration: 1, ease: "easeOut" }} // Smooth animation
+              style={{ margin: "3rem" }}
             >
               <Typography
                 variant="h5"
                 sx={{
                   fontWeight: 600,
                   marginBottom: "0.5rem",
-                  color: "#4B5563",
+                  color: "#F3F4F6", // Light text for contrast
                   fontSize: { xs: "16px", md: "24px" },
                 }}
               >
@@ -48,21 +60,22 @@ const About: React.FC = () => {
               </Typography>
 
               <Image
-                src={mainLogo}
+                src={whiteLogo}
                 alt="Main Logo"
-                width={300}
-                height={300}
+                width={200}
+                height={200}
                 style={{
                   marginBottom: "2rem",
+                  maxWidth: "100%",
                 }}
               />
 
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: { xs: "16px", md: "18px" },
+                  fontSize: { xs: "14px", md: "18px" },
                   lineHeight: "1.8",
-                  color: "#4B5563",
+                  color: "#E5E7EB", // Slightly lighter text for readability
                 }}
               >
                 <span style={{ fontWeight: 600, color: "#6c63ff" }}>
@@ -96,13 +109,23 @@ const About: React.FC = () => {
               animate={firstSectionInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
               style={{
-                background: "#FFFFFF",
                 borderRadius: "50px",
-                boxShadow: "0px 15px 30px rgba(0, 0, 0, 0.1)",
+                overflow: "hidden",
                 width: "100%",
-                height: "500px",
+                height: "auto",
               }}
-            />
+            >
+              <iframe
+                src="https://my.spline.design/worldplanet-334b6371a45be1e8734eb4a3da0f21b8/"
+                style={{
+                  width: "100%",
+                  height: isMobile ? "300px" : "600px", // Adjust height based on screen size
+                  border: "none",
+                  backgroundColor: "transparent",
+                }}
+                allow="fullscreen"
+              ></iframe>
+            </motion.div>
           </Grid>
         </Grid>
       </Box>
@@ -111,8 +134,8 @@ const About: React.FC = () => {
       <Box
         ref={secondSectionRef}
         sx={{
-          padding: { xs: "2rem", md: "4rem" },
-          marginTop: { xs: 0, md: "4rem" },
+          px: { xs: "2rem", md: "6rem" },
+          mt: { xs: "4rem", md: "6rem" },
         }}
       >
         <Grid
@@ -123,18 +146,16 @@ const About: React.FC = () => {
         >
           {/* Floating Image */}
           <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={secondSectionInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 1, ease: "easeOut" }}
+            <iframe
+              src="https://my.spline.design/particlenebula-dae7209750ac2fc00de7880cab1472e7/"
               style={{
-                background: "#FFFFFF",
-                borderRadius: "50px",
-                boxShadow: "0px 15px 30px rgba(0, 0, 0, 0.1)",
                 width: "100%",
-                height: "500px",
+                height: isMobile ? "300px" : "600px", // Adjust height based on screen size
+                border: "none",
+                backgroundColor: "transparent",
               }}
-            />
+              allow="fullscreen"
+            ></iframe>
           </Grid>
 
           {/* Text Content */}
@@ -149,7 +170,7 @@ const About: React.FC = () => {
                 sx={{
                   fontWeight: 600,
                   marginBottom: "0.5rem",
-                  color: "#4B5563",
+                  color: "#E5E7EB",
                   fontSize: { xs: "16px", md: "24px" },
                   textAlign: "right",
                 }}
@@ -160,8 +181,8 @@ const About: React.FC = () => {
                 variant="h2"
                 sx={{
                   fontWeight: 800,
-                  color: "#2C2C2C",
-                  fontSize: { xs: "32px", md: "48px" },
+                  color: "#F3F4F6",
+                  fontSize: { xs: "24px", md: "48px" },
                   marginBottom: "1rem",
                   textAlign: "right",
                 }}
@@ -171,9 +192,9 @@ const About: React.FC = () => {
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: { xs: "16px", md: "18px" },
+                  fontSize: { xs: "14px", md: "18px" },
                   lineHeight: "1.8",
-                  color: "#4B5563",
+                  color: "#E5E7EB",
                   textAlign: "right",
                 }}
               >
@@ -189,14 +210,6 @@ const About: React.FC = () => {
                 <span style={{ fontWeight: 600, color: "#6c63ff" }}>
                   construir conexiones significativas dentro de su propio
                   campus.
-                </span>{" "}
-                Al enfocarnos en este grupo piloto, podemos garantizar un
-                ambiente seguro y controlado para probar y optimizar las
-                funcionalidades de la plataforma, al tiempo que ayudamos a los
-                estudiantes a{" "}
-                <span style={{ fontWeight: 600, color: "#6c63ff" }}>
-                  expandir sus redes de contacto y potenciar su desarrollo
-                  personal y profesional.
                 </span>{" "}
                 Este es solo el primer paso en el camino hacia una comunidad
                 universitaria más conectada. ¡Únete y sé parte del cambio que
