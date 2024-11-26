@@ -4,28 +4,23 @@ import { NextPage } from "next";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "../theme"; // Asegúrate de que este archivo existe
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import MinBanner from "@components/MainBanner/MainBanner";
+import About from "@components/About/About";
+import Discover from "@components/Discover/Discover";
+import HelpSwiper from "@components/HelpSwiper/HelpSwiper";
+import Counter from "@components/Counter/Counter";
 
 const Home: NextPage = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100vh",
-          textAlign: "center",
-        }}
-      >
-        <Typography variant="h1" component="h1" gutterBottom>
-          Welcome to the Home Page
-        </Typography>
-        <Typography variant="body1">
-          This is a simple Next.js page with Material-UI theming.
-        </Typography>
+      <Box>
+        <MinBanner />
+        <About />
+        <Discover />
+        <HelpSwiper />
+        <Counter />
       </Box>
     </ThemeProvider>
   );
