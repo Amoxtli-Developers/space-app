@@ -38,3 +38,7 @@ body {
 .swiper-button-prev:hover {
   color: #7373ff; /* Darker shade for hover */
 }
+
+.spline-watermark{
+  display: none !important;
+}
