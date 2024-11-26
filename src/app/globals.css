@@ -12,7 +12,7 @@ html, body {
 }
 
 :root {
-  --background: #ffffff;
+  --background: #F0F1F6;
   --foreground: #171717;
 }
 
@@ -26,4 +26,15 @@ html, body {
 body {
   color: var(--foreground);
   background: var(--background);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #7373ff; /* Set arrow color */
+  transition: color 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #7373ff; /* Darker shade for hover */
 }

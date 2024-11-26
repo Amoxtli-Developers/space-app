@@ -1,0 +1,226 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { Box, Grid, Typography, Card } from "@mui/material";
+
+const Counter: React.FC = () => {
+  const targetDate = new Date("2025-01-17T00:00:00"); // Target date and time
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date();
+      const difference = targetDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / (1000 * 60)) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    const timer = setInterval(calculateTimeLeft, 1000);
+    return () => clearInterval(timer);
+  }, [targetDate]);
+
+  return (
+    <Box sx={{ padding: { xs: "2rem", md: "4rem" }, textAlign: "center" }}>
+      <Grid container spacing={4}>
+        {/* Top Row */}
+        <Grid item xs={12} md={6}>
+          <Card
+            sx={{
+              padding: "2rem",
+              py: "6rem",
+              borderRadius: "50px",
+              border: "1px solid #7373FF",
+              boxShadow: "none",
+              height: "100%",
+              alignContent: "center",
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 800,
+                color: "#6c63ff",
+                fontSize: { xs: "80px", md: "128px" },
+                textShadow: "0px 15px 30px #F5CCFF",
+              }}
+            >
+              Muy <br />
+              Pronto
+            </Typography>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Card
+            sx={{
+              padding: "2rem",
+              py: "6rem",
+              borderRadius: "50px",
+              border: "1px solid #7373FF",
+              boxShadow: "none",
+              height: "100%",
+              alignContent: "center",
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 800,
+                color: "#6c63ff",
+                fontSize: { xs: "80px", md: "128px" },
+                textShadow: "0px 15px 15px #F5CCFF",
+              }}
+            >
+              17 ene.
+              <br />
+              2025
+            </Typography>
+          </Card>
+        </Grid>
+
+        {/* Bottom Row */}
+        <Grid item xs={12}>
+          <Card
+            sx={{
+              padding: "2rem",
+              py: "4rem",
+              borderRadius: "50px",
+              border: "1px solid #7373FF",
+              boxShadow: "none",
+              height: "100%",
+              alignContent: "center",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+                gap: "1rem",
+              }}
+            >
+              {/* Days */}
+              <Box>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 800,
+                    color: "#6c63ff",
+                    fontSize: { xs: "40px", md: "128px" },
+                    textShadow: "0px 15px 15px #F5CCFF",
+                  }}
+                >
+                  {timeLeft.days}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: 500,
+                    color: "#7373FF",
+                    opacity: 0.5,
+                    fontSize: { xs: "14px", md: "40px" },
+                  }}
+                >
+                  días
+                </Typography>
+              </Box>
+
+              {/* Hours */}
+              <Box>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 800,
+                    color: "#6c63ff",
+                    fontSize: { xs: "40px", md: "128px" },
+                    textShadow: "0px 15px 15px #F5CCFF",
+                  }}
+                >
+                  {timeLeft.hours}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: 500,
+                    color: "#7373FF",
+                    opacity: 0.5,
+                    fontSize: { xs: "14px", md: "40px" },
+                  }}
+                >
+                  horas
+                </Typography>
+              </Box>
+
+              {/* Minutes */}
+              <Box>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 800,
+                    color: "#6c63ff",
+                    fontSize: { xs: "40px", md: "128px" },
+                    textShadow: "0px 15px 15px #F5CCFF",
+                  }}
+                >
+                  {timeLeft.minutes}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: 500,
+                    color: "#7373FF",
+                    opacity: 0.5,
+                    fontSize: { xs: "14px", md: "40px" },
+                  }}
+                >
+                  minutos
+                </Typography>
+              </Box>
+
+              {/* Seconds */}
+              <Box>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 800,
+                    color: "#6c63ff",
+                    fontSize: { xs: "40px", md: "128px" },
+                    textShadow: "0px 15px 15px #F5CCFF",
+                  }}
+                >
+                  {timeLeft.seconds}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: 500,
+                    color: "#7373FF",
+                    opacity: 0.5,
+                    fontSize: { xs: "14px", md: "40px" },
+                  }}
+                >
+                  segundos
+                </Typography>
+              </Box>
+            </Box>
+          </Card>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
+
+export default Counter;
