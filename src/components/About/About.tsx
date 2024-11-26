@@ -44,8 +44,9 @@ const About: React.FC = () => {
                   fontSize: { xs: "16px", md: "24px" },
                 }}
               >
-                Qué es
+                Bienvenido a
               </Typography>
+
               <Image
                 src={mainLogo}
                 alt="Main Logo"
@@ -55,19 +56,35 @@ const About: React.FC = () => {
                   marginBottom: "2rem",
                 }}
               />
+
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: "16px",
+                  fontSize: { xs: "16px", md: "18px" },
                   lineHeight: "1.8",
                   color: "#4B5563",
                 }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse nisi augue, tincidunt in massa sit amet, commodo
-                rhoncus nulla. Nullam at congue mi. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Suspendisse nisi augue, tincidunt
-                in massa sit amet, commodo rhoncus nulla. Nullam at congue mi.
+                <span style={{ fontWeight: 600, color: "#6c63ff" }}>
+                  La red estudiantil diseñada para conectar a la comunidad
+                  universitaria.
+                </span>{" "}
+                Esta plataforma te permite ofrecer tus servicios como
+                freelancer, vender productos dentro del campus, publicar
+                espacios en renta cerca de la universidad y establecer
+                conexiones valiosas con otros estudiantes. Nuestro propósito es{" "}
+                <span style={{ fontWeight: 600, color: "#6c63ff" }}>
+                  facilitar estas interacciones de manera segura y accesible
+                </span>
+                , sirviendo como un puente entre quienes buscan oportunidades y
+                quienes tienen algo que ofrecer. Aunque no gestionamos
+                directamente los procesos de venta o contratación,{" "}
+                <span style={{ fontWeight: 600, color: "#6c63ff" }}>
+                  conectamos talentos, necesidades y proyectos en un solo lugar.
+                </span>{" "}
+                Únete y transforma la forma en que interactúas con tu comunidad
+                universitaria, aprovechando todo el potencial de una red hecha
+                para estudiantes como tú.
               </Typography>
             </motion.div>
           </Grid>
@@ -154,17 +171,37 @@ const About: React.FC = () => {
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: "16px",
+                  fontSize: { xs: "16px", md: "18px" },
                   lineHeight: "1.8",
                   color: "#4B5563",
                   textAlign: "right",
                 }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse nisi augue, tincidunt in massa sit amet, commodo
-                rhoncus nulla. Nullam at congue mi. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Suspendisse nisi augue, tincidunt
-                in massa sit amet, commodo rhoncus nulla. Nullam at congue mi.
+                En esta primera etapa, la plataforma está dirigida
+                exclusivamente a los estudiantes del{" "}
+                <span style={{ fontWeight: 600, color: "#6c63ff" }}>
+                  Tecnológico de Monterrey, Campus CCM
+                </span>
+                . Este enfoque inicial busca consolidar una comunidad sólida
+                donde los estudiantes puedan explorar las múltiples
+                posibilidades que ofrece la plataforma: promover servicios,
+                vender productos, buscar espacios en renta y, lo más importante,{" "}
+                <span style={{ fontWeight: 600, color: "#6c63ff" }}>
+                  construir conexiones significativas dentro de su propio
+                  campus.
+                </span>{" "}
+                Al enfocarnos en este grupo piloto, podemos garantizar un
+                ambiente seguro y controlado para probar y optimizar las
+                funcionalidades de la plataforma, al tiempo que ayudamos a los
+                estudiantes a{" "}
+                <span style={{ fontWeight: 600, color: "#6c63ff" }}>
+                  expandir sus redes de contacto y potenciar su desarrollo
+                  personal y profesional.
+                </span>{" "}
+                Este es solo el primer paso en el camino hacia una comunidad
+                universitaria más conectada. ¡Únete y sé parte del cambio que
+                transformará cómo los estudiantes colaboran, crean y crecen
+                juntos!
               </Typography>
             </motion.div>
           </Grid>
