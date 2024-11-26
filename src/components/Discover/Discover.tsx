@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { Box, Grid, Typography, Card } from "@mui/material";
 import SchoolIcon from "@mui/icons-material/School";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
@@ -8,6 +8,7 @@ import WorkIcon from "@mui/icons-material/Work";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import { motion, useInView } from "framer-motion";
 
 const Discover: React.FC = () => {
   const features = [
@@ -43,54 +44,81 @@ const Discover: React.FC = () => {
     },
   ];
 
+  // Container reference to detect view
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true });
+
   return (
-    <Box sx={{ padding: { xs: "2rem", md: "4rem" }, textAlign: "center" }}>
-      <Typography
-        variant="h4"
-        sx={{
-          fontWeight: 700,
-          marginBottom: "2rem",
-          color: "#2C2C2C",
-        }}
+    <Box
+      ref={containerRef}
+      sx={{
+        padding: { xs: "2rem", md: "4rem" },
+        textAlign: "center",
+        mb: { xs: 0, md: "2rem" },
+      }}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 1, ease: "easeOut" }}
       >
-        Descubre todo lo que puedes hacer
-      </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: 700,
+            marginBottom: "2rem",
+            color: "#2C2C2C",
+          }}
+        >
+          Descubre todo lo que puedes hacer
+        </Typography>
+      </motion.div>
 
       <Grid container spacing={3}>
         {features.map((feature, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card
-              sx={{
-                height: "100%",
-                borderRadius: "50px",
-                border: "1px solid #e5e7eb",
-                boxShadow: "none",
-                transition: "transform 0.3s, background 1s",
-                textAlign: "left",
-                "&:hover": {
-                  transform: "translateY(-10px)",
-                  background:
-                    "linear-gradient(270deg, rgba(115, 115, 255, 0.35) 0%, rgba(245, 204, 255, 0.35) 100%)",
-                },
-                px: "2rem",
-                py: "4rem",
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.2, // Stagger animation
+                ease: "easeOut",
               }}
             >
-              <Box>{feature.icon}</Box>
-              <Typography
-                variant="h6"
+              <Card
                 sx={{
-                  fontWeight: 600,
-                  marginBottom: "0.5rem",
-                  color: "#4B5563",
+                  height: "100%",
+                  borderRadius: "50px",
+                  border: "1px solid #e5e7eb",
+                  boxShadow: "none",
+                  transition: "transform 0.3s, background 1s",
+                  textAlign: "left",
+                  "&:hover": {
+                    transform: "translateY(-10px)",
+                    background:
+                      "linear-gradient(270deg, rgba(115, 115, 255, 0.35) 0%, rgba(245, 204, 255, 0.35) 100%)",
+                  },
+                  px: "2rem",
+                  py: "4rem",
                 }}
               >
-                {feature.title}
-              </Typography>
-              <Typography variant="body2" sx={{ color: "#4B5563" }}>
-                {feature.description}
-              </Typography>
-            </Card>
+                <Box>{feature.icon}</Box>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 600,
+                    marginBottom: "0.5rem",
+                    color: "#4B5563",
+                  }}
+                >
+                  {feature.title}
+                </Typography>
+                <Typography variant="body2" sx={{ color: "#4B5563" }}>
+                  {feature.description}
+                </Typography>
+              </Card>
+            </motion.div>
           </Grid>
         ))}
       </Grid>
