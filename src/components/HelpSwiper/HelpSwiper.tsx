@@ -52,8 +52,8 @@ const HelpSwiper: React.FC = () => {
     >
       <Box
         sx={{
-          padding: { xs: "1.5rem", md: "4rem" },
-          mb: { xs: 0, md: "2rem" },
+          mt: { xs: "4rem", md: "6rem" },
+          px: { xs: "2rem", md: "6rem" },
         }}
       >
         {/* Section Title */}
