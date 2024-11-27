@@ -11,7 +11,6 @@ import Discover from "@components/Discover/Discover";
 import HelpSwiper from "@components/HelpSwiper/HelpSwiper";
 import Counter from "@components/Counter/Counter";
 import Footer from "@components/Footer/Footer";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home: NextPage = () => {
@@ -25,7 +24,6 @@ const Home: NextPage = () => {
         <HelpSwiper />
         <Counter />
         <Footer />
-        <ToastContainer /> 
       </Box>
     </ThemeProvider>
   );

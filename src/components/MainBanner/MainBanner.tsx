@@ -1,13 +1,22 @@
 "use client";
 
 import React, { useState } from "react";
-import { Box, Typography, TextField, Button, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  CircularProgress,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
-import { toast } from "react-toastify";
 import mainLogo from "@assets/logo/SVG/main.svg";
 import Image from "next/image";
 
@@ -19,16 +28,18 @@ const MainBanner: React.FC = () => {
   ];
 
   const [email, setEmail] = useState<string>("");
+  const [submittedEmail, setSubmittedEmail] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false); // Estado para controlar el loader
+  const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false); // Estado para mostrar modal de error
+  const [successModalOpen, setSuccessModalOpen] = useState<boolean>(false); // Estado para mostrar modal de éxito
 
   // Función para validar el formato del correo
-  const isEmailValid = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); // Validación básica de correos
-  };
+  const isEmailValid = (email: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleSubmit = async () => {
     if (!email || !isEmailValid(email)) {
-      toast.error("Por favor, ingresa un correo electrónico válido.");
+      setErrorModalOpen(true);
       return;
     }
 
@@ -43,13 +54,14 @@ const MainBanner: React.FC = () => {
       });
 
       if (response.ok) {
-        toast.success("¡Registro exitoso! Te notificaremos pronto.");
+        setSubmittedEmail(email);
+        setSuccessModalOpen(true); // Mostrar modal de éxito
         setEmail("");
       } else {
-        toast.error("Hubo un error. Por favor, intenta de nuevo.");
+        setErrorModalOpen(true); // Mostrar modal de error
       }
-    } catch (error) { //eslint-disable-line
-      toast.error("Hubo un error inesperado. Por favor, intenta de nuevo.");
+    } catch {
+      setErrorModalOpen(true); // Mostrar modal de error
     } finally {
       setLoading(false); // Ocultar loader
     }
@@ -79,7 +91,10 @@ const MainBanner: React.FC = () => {
             background:
               "url('/assets/background/back.png') center / cover no-repeat",
             borderRadius: { xs: 0, sm: "50px" },
-            boxShadow: { xs: "none", md: "0px 15px 50px 0px rgba(0, 0, 0, 0.25)" },
+            boxShadow: {
+              xs: "none",
+              md: "0px 15px 50px 0px rgba(0, 0, 0, 0.25)",
+            },
             backdropFilter: "blur(2px)",
             position: "relative",
             textAlign: "center",
@@ -217,9 +232,9 @@ const MainBanner: React.FC = () => {
               <Button
                 variant="contained"
                 onClick={handleSubmit}
-                disabled={!isEmailValid(email) || loading} // Deshabilitar si está cargando o el email no es válido
+                disabled={!isEmailValid(email) || loading}
                 sx={{
-                  bgcolor: loading ? "#b3b3b3" : "#7373FF", // Cambiar color cuando está cargando
+                  bgcolor: loading ? "#b3b3b3" : "#7373FF",
                   color: "#fff",
                   padding: { xs: "0.5rem 1rem", sm: "0.8rem 2rem" },
                   borderRadius: "25px",
@@ -230,12 +245,114 @@ const MainBanner: React.FC = () => {
                   },
                 }}
               >
-                {loading ? <CircularProgress size={24} color="inherit" /> : "Unirse"}
+                {loading ? (
+                  <CircularProgress size={24} color="inherit" />
+                ) : (
+                  "Unirse"
+                )}
               </Button>
             </Box>
           </Box>
         </Box>
       </Box>
+
+      {/* Modal de éxito */}
+      <Dialog
+        open={successModalOpen}
+        onClose={() => setSuccessModalOpen(false)}
+        sx={{
+          "& .MuiDialog-paper": {
+            borderRadius: "50px",
+            boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.1)",
+            padding: "2rem",
+          },
+        }}
+      >
+        <DialogTitle sx={{ fontSize: "24px", fontWeight: 700 }}>
+          Registro exitoso
+        </DialogTitle>
+        <DialogContent>
+          <Typography sx={{ fontSize: "18px", mb: 2 }}>
+            Gracias por ser parte de{" "}
+            <strong style={{ color: "#7373FF" }}>Space App</strong>. Estamos muy
+            contentos de tenerte a bordo.
+          </Typography>
+          <Typography sx={{ fontSize: "16px", mb: 2 }}>
+            Se ha enviado un correo de confirmación a{" "}
+            <strong style={{ color: "#7373FF" }}>{submittedEmail}</strong>.
+          </Typography>
+          <Typography sx={{ fontSize: "16px", mb: 2 }}>
+            Tu registro te dará acceso anticipado a la versión beta de{" "}
+            <strong style={{ color: "#7373FF" }}>Space App</strong>. ¡Serás uno
+            de los primeros en probar esta emocionante experiencia!
+          </Typography>
+          <Typography sx={{ fontSize: "14px" }}>
+            Si el correo no llega, revisa tu carpeta de spam o contacta al
+            soporte en{" "}
+            <strong style={{ color: "#7373FF" }}>
+              soporte.spaceapp@amoxtli.tech
+            </strong>
+            .
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setSuccessModalOpen(false)}
+            sx={{
+              bgcolor: "#7373FF",
+              color: "#fff",
+              borderRadius: "50px",
+              textTransform: "none",
+              padding: "0.5rem 1rem",
+            }}
+          >
+            ¡Entendido!
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Modal de error */}
+      <Dialog
+        open={errorModalOpen}
+        onClose={() => setErrorModalOpen(false)}
+        sx={{
+          "& .MuiDialog-paper": {
+            borderRadius: "50px",
+            boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.1)",
+            padding: "2rem",
+          },
+        }}
+      >
+        <DialogTitle sx={{ fontSize: "24px", fontWeight: 700 }}>
+          Error
+        </DialogTitle>
+        <DialogContent>
+          <Typography sx={{ fontSize: "18px", mb: 2 }}>
+            Lo sentimos, no se logró registrar tu correo en la lista de espera.
+          </Typography>
+          <Typography sx={{ fontSize: "16px" }}>
+            Si el error persiste, contacta a nuestro equipo de soporte en{" "}
+            <strong style={{ color: "#7373FF" }}>
+              soporte.spaceapp@amoxtli.tech
+            </strong>
+            .
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setErrorModalOpen(false)}
+            sx={{
+              bgcolor: "#7373FF",
+              color: "#fff",
+              borderRadius: "50px",
+              textTransform: "none",
+              padding: "0.5rem 1rem",
+            }}
+          >
+            Volver a intentarlo
+          </Button>
+        </DialogActions>
+      </Dialog>
     </motion.div>
   );
 };

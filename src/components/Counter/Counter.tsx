@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Box, Grid, Typography, Card } from "@mui/material";
 import { motion } from "framer-motion";
 
 const Counter: React.FC = () => {
-  const targetDate = new Date("2025-01-17T00:00:00"); // Target date and time
+  const targetDate = useMemo(() => new Date("2025-03-01T00:00:00"), []);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -105,7 +105,7 @@ const Counter: React.FC = () => {
                   textShadow: "0px 15px 15px #F5CCFF",
                 }}
               >
-                17 ene.
+                1 mar.
                 <br />
                 2025
               </Typography>
