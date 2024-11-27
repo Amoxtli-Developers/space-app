@@ -5,11 +5,11 @@ const handler = async (
   req: { method: string; body: { email: string } },
   res: {
     status: (arg0: number) => {
-      (): any; //eslint-disable-line
-      new (): any; //eslint-disable-line
+      (): any; // eslint-disable-line
+      new (): any; // eslint-disable-line
       json: {
         (arg0: { error?: string; message?: string; details?: string }): void;
-        new (): any; //eslint-disable-line
+        new (): any; // eslint-disable-line
       };
     };
   }
@@ -30,6 +30,12 @@ const handler = async (
     const db = client.db("SpaceAppDB");
     const collection = db.collection("registrations");
 
+    // Verifica si el correo ya existe
+    const existingUser = await collection.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({ message: "Correo ya registrado" }); // Código 409 para conflicto
+    }
+
     // Inserta el registro en la base de datos
     await collection.insertOne({ email, timestamp: new Date() });
 
@@ -45,9 +51,9 @@ const handler = async (
 
     // Envía el correo
     await transporter.sendMail({
-      from: `"Space App" <${process.env.FROM_EMAIL}>`, // Email del remitente
-      to: process.env.TO_EMAIL, // Email destino principal
-      cc: email, // Copia al usuario registrado
+      from: `"Space App" <${process.env.FROM_EMAIL}>`,
+      to: process.env.TO_EMAIL,
+      cc: email,
       subject: "Nuevo registro en la lista de espera de Space App",
       html: `
         <div style="font-family: Arial, sans-serif; text-align: center; color: #333; padding: 20px; line-height: 1.5;">
