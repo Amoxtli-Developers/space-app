@@ -210,7 +210,7 @@ const MainBanner: React.FC = () => {
                 placeholder="Email"
                 variant="outlined"
                 value={email}
-                onChange={(e) => setEmail(e.target.value.toLowerCase())} 
+                onChange={(e) => setEmail(e.target.value.toLowerCase())}
                 sx={{
                   borderRadius: "25px",
                   "& .MuiOutlinedInput-root": {
@@ -370,9 +370,14 @@ const MainBanner: React.FC = () => {
           Correo ya registrado
         </DialogTitle>
         <DialogContent>
-          <Typography>
+          <Typography sx={{ fontSize: "16px", mb: 2 }}>
             El correo <strong style={{ color: "#7373FF" }}>{email}</strong> ya
             está registrado.
+          </Typography>
+          <Typography sx={{ fontSize: "18px" }}>
+            Gracias por ser parte de{" "}
+            <strong style={{ color: "#7373FF" }}>Space App</strong>. Muy pronto
+            recibirás noticias nuestras.
           </Typography>
         </DialogContent>
         <DialogActions>
