@@ -74,25 +74,30 @@ const About: React.FC = () => {
                 }}
               >
                 <span style={{ fontWeight: 600, color: "#6c63ff" }}>
-                  La red estudiantil diseñada para conectar a la comunidad
-                  universitaria.
+                  Space App es la red estudiantil diseñada para conectar y
+                  potenciar la comunidad universitaria.
                 </span>{" "}
-                Esta plataforma te permite ofrecer tus servicios como
-                freelancer, vender productos dentro del campus, publicar
-                espacios en renta cerca de la universidad y establecer
-                conexiones valiosas con otros estudiantes. Nuestro propósito es{" "}
+                Imagina un espacio donde puedes mantenerte al día con las
+                noticias y eventos más importantes de tu campus, ofrecer tus
+                servicios como freelancer o emprendedor, y descubrir nuevas
+                oportunidades de colaboración. Space App facilita la compra y
+                venta de productos entre estudiantes, publica opciones de renta
+                cerca de tu universidad y crea conexiones valiosas para impulsar
+                tus proyectos y metas personales.
+                <br />
+                <br />
+                Nuestro propósito es{" "}
                 <span style={{ fontWeight: 600, color: "#6c63ff" }}>
-                  facilitar estas interacciones de manera segura y accesible
-                </span>
-                , sirviendo como un puente entre quienes buscan oportunidades y
+                  hacer que estas interacciones sean seguras, accesibles y
+                  efectivas,
+                </span>{" "}
+                actuando como un puente entre quienes buscan oportunidades y
                 quienes tienen algo que ofrecer. Aunque no gestionamos
-                directamente los procesos de venta o contratación,{" "}
+                directamente las transacciones,{" "}
                 <span style={{ fontWeight: 600, color: "#6c63ff" }}>
-                  conectamos talentos, necesidades y proyectos en un solo lugar.
+                  Space App
                 </span>{" "}
-                Únete y transforma la forma en que interactúas con tu comunidad
-                universitaria, aprovechando todo el potencial de una red hecha
-                para estudiantes como tú.
+                conecta talentos, necesidades y proyectos en un solo lugar.
               </Typography>
             </motion.div>
           </Grid>
@@ -201,23 +206,31 @@ const About: React.FC = () => {
                   textAlign: "right",
                 }}
               >
-                En esta primera etapa, la plataforma está dirigida
-                exclusivamente a los estudiantes del{" "}
+                En esta fase inicial, Space App está diseñada específicamente
+                para estudiantes del{" "}
                 <span style={{ fontWeight: 600, color: "#6c63ff" }}>
                   Tecnológico de Monterrey, Campus CCM
                 </span>
-                . Este enfoque inicial busca consolidar una comunidad sólida
-                donde los estudiantes puedan explorar las múltiples
-                posibilidades que ofrece la plataforma: promover servicios,
-                vender productos, buscar espacios en renta y, lo más importante,{" "}
+                . Nuestro objetivo es construir una comunidad sólida y activa
+                que permita a los estudiantes explorar todas las posibilidades
+                que la plataforma ofrece.
+                <br />
+                <br />
+                Este lanzamiento marca el{" "}
                 <span style={{ fontWeight: 600, color: "#6c63ff" }}>
-                  construir conexiones significativas dentro de su propio
-                  campus.
+                  primer paso
                 </span>{" "}
-                Este es solo el primer paso en el camino hacia una comunidad
-                universitaria más conectada. ¡Únete y sé parte del cambio que
-                transformará cómo los estudiantes colaboran, crean y crecen
-                juntos!
+                hacia la creación de una red universitaria completamente
+                conectada, donde las ideas fluyen, las colaboraciones nacen y
+                las oportunidades crecen.
+                <br />
+                <br />
+                <span style={{ fontWeight: 600, color: "#6c63ff" }}>
+                  ¡Únete a Space App!
+                </span>{" "}
+                Sé parte de la revolución que está transformando la forma en que
+                los estudiantes colaboran, innovan y crecen juntos en un entorno
+                seguro y dinámico.
               </Typography>
             </motion.div>
           </Grid>

@@ -13,8 +13,8 @@ import { motion, useInView } from "framer-motion";
 const Discover: React.FC = () => {
   const features = [
     {
-      title: "Conexión entre Carreras",
-      description: "Colabora con estudiantes de otras áreas en proyectos.",
+      title: "Noticias On Campus",
+      description: "Conoce los eventos y noticias más relevantes de tu campus.",
       icon: <SchoolIcon fontSize="large" sx={{ color: "#4B5563" }} />,
     },
     {
@@ -29,17 +29,17 @@ const Discover: React.FC = () => {
     },
     {
       title: "Emprendimientos en Campus",
-      description: "Promociona tu negocio de comida o servicios.",
+      description: "Promociona tu negocio de productos o servicios.",
       icon: <RocketLaunchIcon fontSize="large" sx={{ color: "#4B5563" }} />,
     },
     {
       title: "Búsqueda de Roomies",
-      description: "Encuentra compañeros de cuarto o renta un espacio.",
+      description: "Encuentra roomies o renta un espacio.",
       icon: <ApartmentIcon fontSize="large" sx={{ color: "#4B5563" }} />,
     },
     {
       title: "Proyectos Colaborativos",
-      description: "Publica tus ideas y encuentra colaboradores.",
+      description: "Publica tus ideas y encuentra a tu próximo equipo de trabajo.",
       icon: <LightbulbIcon fontSize="large" sx={{ color: "#4B5563" }} />,
     },
   ];
