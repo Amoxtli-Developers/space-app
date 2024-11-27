@@ -19,7 +19,8 @@ const Footer: React.FC = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "url('/assets/background/back.png') center / cover no-repeat", // Use the background image
+        background:
+          "url('/assets/background/back.png') center / cover no-repeat", // Use the background image
         textAlign: "center",
         position: "relative",
         color: "#6c63ff", // Text color matching the design
@@ -76,7 +77,16 @@ const Footer: React.FC = () => {
               fontSize: { xs: "16px", sm: "18px", md: "36px" }, // Adjust font size for different screens
               color: "#7373FF", // Purple text color
               mt: "1rem",
+              cursor: "pointer", // Ensure pointer cursor for hoverable element
+              textDecoration: "none",
+              "&:hover": {
+                textDecoration: "underline", // Add underline effect on hover
+              },
             }}
+            component="a" // Use Typography as a link
+            href="https://www.amoxtli.tech"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             by Amoxtli Web Developers
           </Typography>
