@@ -32,6 +32,7 @@ const MainBanner: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false); // Estado para controlar el loader
   const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false); // Estado para mostrar modal de error
   const [successModalOpen, setSuccessModalOpen] = useState<boolean>(false); // Estado para mostrar modal de éxito
+  const [duplicateModalOpen, setDuplicateModalOpen] = useState<boolean>(false);
 
   // Función para validar el formato del correo
   const isEmailValid = (email: string) =>
@@ -43,27 +44,27 @@ const MainBanner: React.FC = () => {
       return;
     }
 
-    setLoading(true); // Mostrar loader
+    setLoading(true);
     try {
       const response = await fetch("/api/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
 
-      if (response.ok) {
+      if (response.status === 409) {
+        setDuplicateModalOpen(true);
+      } else if (response.ok) {
         setSubmittedEmail(email);
-        setSuccessModalOpen(true); // Mostrar modal de éxito
+        setSuccessModalOpen(true);
         setEmail("");
       } else {
-        setErrorModalOpen(true); // Mostrar modal de error
+        setErrorModalOpen(true);
       }
     } catch {
-      setErrorModalOpen(true); // Mostrar modal de error
+      setErrorModalOpen(true);
     } finally {
-      setLoading(false); // Ocultar loader
+      setLoading(false);
     }
   };
 
@@ -209,7 +210,7 @@ const MainBanner: React.FC = () => {
                 placeholder="Email"
                 variant="outlined"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value.toLowerCase())} 
                 sx={{
                   borderRadius: "25px",
                   "& .MuiOutlinedInput-root": {
@@ -264,7 +265,7 @@ const MainBanner: React.FC = () => {
           "& .MuiDialog-paper": {
             borderRadius: "50px",
             boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.1)",
-            padding: "2rem",
+            padding: "1rem",
           },
         }}
       >
@@ -319,7 +320,7 @@ const MainBanner: React.FC = () => {
           "& .MuiDialog-paper": {
             borderRadius: "50px",
             boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.1)",
-            padding: "2rem",
+            padding: "1rem",
           },
         }}
       >
@@ -350,6 +351,42 @@ const MainBanner: React.FC = () => {
             }}
           >
             Volver a intentarlo
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={duplicateModalOpen}
+        onClose={() => setDuplicateModalOpen(false)}
+        sx={{
+          "& .MuiDialog-paper": {
+            borderRadius: "50px",
+            boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.1)",
+            padding: "1rem",
+          },
+        }}
+      >
+        <DialogTitle sx={{ fontSize: "24px", fontWeight: 700 }}>
+          Correo ya registrado
+        </DialogTitle>
+        <DialogContent>
+          <Typography>
+            El correo <strong style={{ color: "#7373FF" }}>{email}</strong> ya
+            está registrado.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setDuplicateModalOpen(false)}
+            sx={{
+              bgcolor: "#7373FF",
+              color: "#fff",
+              borderRadius: "50px",
+              textTransform: "none",
+              padding: "0.5rem 1rem",
+            }}
+          >
+            Cerrar
           </Button>
         </DialogActions>
       </Dialog>
