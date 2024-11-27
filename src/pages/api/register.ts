@@ -37,7 +37,15 @@ const handler = async (
     }
 
     // Inserta el registro en la base de datos
-    await collection.insertOne({ email, timestamp: new Date() });
+    try {
+      await collection.insertOne({ email, timestamp: new Date() });
+    } catch (dbError) {
+      console.error("Error al insertar en la base de datos:", dbError);
+      return res.status(500).json({
+        error: "Error al registrar el correo.",
+        details: dbError instanceof Error ? dbError.message : "Error desconocido",
+      });
+    }
 
     // Configura Nodemailer
     const transporter = nodemailer.createTransport({
