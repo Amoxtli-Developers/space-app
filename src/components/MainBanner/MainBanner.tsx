@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
-import { Box, Typography, TextField, Button } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Typography, TextField, Button, CircularProgress } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 import mainLogo from "@assets/logo/SVG/main.svg";
 import Image from "next/image";
 
@@ -17,17 +18,54 @@ const MainBanner: React.FC = () => {
     "Un espacio donde las relaciones universitarias se hacen realidad.",
   ];
 
+  const [email, setEmail] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false); // Estado para controlar el loader
+
+  // Función para validar el formato del correo
+  const isEmailValid = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); // Validación básica de correos
+  };
+
+  const handleSubmit = async () => {
+    if (!email || !isEmailValid(email)) {
+      toast.error("Por favor, ingresa un correo electrónico válido.");
+      return;
+    }
+
+    setLoading(true); // Mostrar loader
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        toast.success("¡Registro exitoso! Te notificaremos pronto.");
+        setEmail("");
+      } else {
+        toast.error("Hubo un error. Por favor, intenta de nuevo.");
+      }
+    } catch (error) { //eslint-disable-line
+      toast.error("Hubo un error inesperado. Por favor, intenta de nuevo.");
+    } finally {
+      setLoading(false); // Ocultar loader
+    }
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }} // Start with opacity 0 and slight downward shift
-      animate={{ opacity: 1, y: 0 }} // Animate to full opacity and original position
-      transition={{ duration: 1, ease: "easeOut" }} // Control the timing of the animation
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
     >
       <Box
         sx={{
           height: "100vh",
-          padding: { xs: 0, sm: "2rem" }, // No padding on mobile
-          mb: { xs: 0, md: "2rem" }
+          padding: { xs: 0, sm: "2rem" },
+          mb: { xs: 0, md: "2rem" },
         }}
       >
         <Box
@@ -36,29 +74,27 @@ const MainBanner: React.FC = () => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            padding: { xs: 0, sm: "2rem" }, // No padding on mobile
+            padding: { xs: 0, sm: "2rem" },
             height: "100%",
             background:
               "url('/assets/background/back.png') center / cover no-repeat",
-            borderRadius: { xs: 0, sm: "50px" }, // No border radius on mobile
-            boxShadow: {xs: "none", md: "0px 15px 50px 0px rgba(0, 0, 0, 0.25)"},
+            borderRadius: { xs: 0, sm: "50px" },
+            boxShadow: { xs: "none", md: "0px 15px 50px 0px rgba(0, 0, 0, 0.25)" },
             backdropFilter: "blur(2px)",
             position: "relative",
             textAlign: "center",
             overflow: "hidden",
           }}
         >
-          {/* Overlay */}
           <Box
             sx={{
               position: "absolute",
               inset: 0,
               backgroundColor: "rgba(251, 251, 251, 0.30)",
-              borderRadius: { xs: 0, sm: "50px" }, // No border radius on mobile
+              borderRadius: { xs: 0, sm: "50px" },
             }}
           />
 
-          {/* Content */}
           <Box
             sx={{
               position: "relative",
@@ -68,7 +104,7 @@ const MainBanner: React.FC = () => {
               alignItems: "center",
               gap: "1.5rem",
               maxWidth: "1000px",
-              px: { xs: "1rem", sm: "2rem", md: "3rem" }, // Responsive horizontal padding
+              px: { xs: "1rem", sm: "2rem", md: "3rem" },
             }}
           >
             <Typography
@@ -76,7 +112,7 @@ const MainBanner: React.FC = () => {
               sx={{
                 color: "#4B5563",
                 textAlign: "center",
-                fontSize: { xs: "16px", sm: "18px", md: "19px" }, // Responsive font size
+                fontSize: { xs: "16px", sm: "18px", md: "19px" },
                 fontWeight: 400,
                 lineHeight: "normal",
               }}
@@ -85,18 +121,17 @@ const MainBanner: React.FC = () => {
             </Typography>
             <Box
               sx={{
-                width: { xs: "200px", sm: "300px", md: "500px" }, // Responsive logo width
+                width: { xs: "200px", sm: "300px", md: "500px" },
                 height: "auto",
               }}
             >
               <Image src={mainLogo} alt="Main Logo" width={500} height={500} />
             </Box>
 
-            {/* Dynamic text with Swiper */}
             <Box
               sx={{
                 width: "100%",
-                maxWidth: { xs: "300px", sm: "500px", md: "1500px" }, // Responsive Swiper max width
+                maxWidth: { xs: "300px", sm: "500px", md: "1500px" },
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -105,14 +140,14 @@ const MainBanner: React.FC = () => {
               <Swiper
                 modules={[Autoplay]}
                 autoplay={{
-                  delay: 3000, // Time between transitions (ms)
+                  delay: 3000,
                   disableOnInteraction: true,
                 }}
-                loop={true}
-                allowTouchMove={true} // Enable touch swipe
+                loop
+                allowTouchMove
                 slidesPerView={1}
                 style={{
-                  width: "100%", // Ensure Swiper takes full width
+                  width: "100%",
                 }}
               >
                 {phrases.map((phrase, index) => (
@@ -127,14 +162,14 @@ const MainBanner: React.FC = () => {
                     <Typography
                       variant="h3"
                       sx={{
-                        height: { xs: "100px", md: "300px" }, // Responsive height: 100px for mobile, 300px for larger screens
+                        height: { xs: "100px", md: "300px" },
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         fontWeight: 700,
                         color: "#2C2C2C",
                         textAlign: "center",
-                        fontSize: { xs: "24px", sm: "36px", md: "64px" }, // Responsive font size
+                        fontSize: { xs: "24px", sm: "36px", md: "64px" },
                         lineHeight: "normal",
                       }}
                     >
@@ -145,34 +180,35 @@ const MainBanner: React.FC = () => {
               </Swiper>
             </Box>
 
-            {/* Input and Button */}
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
                 gap: "0.5rem",
                 width: "100%",
-                maxWidth: { xs: "300px", sm: "400px", md: "500px" }, // Responsive max width
+                maxWidth: { xs: "300px", sm: "400px", md: "500px" },
               }}
             >
               <TextField
                 fullWidth
                 placeholder="Email"
                 variant="outlined"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 sx={{
                   borderRadius: "25px",
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "25px",
                     height: "48px",
                     "& fieldset": {
-                      borderColor: "#7373FF", // Default border color
+                      borderColor: "#7373FF",
                     },
                     "&:hover fieldset": {
-                      borderColor: "#7373FF", // Border color on hover
+                      borderColor: "#7373FF",
                     },
                     "&.Mui-focused fieldset": {
-                      borderColor: "#7373FF", // Border color on focus
-                      borderWidth: "2px", // Optional: Increase border width on focus
+                      borderColor: "#7373FF",
+                      borderWidth: "2px",
                     },
                   },
                 }}
@@ -180,33 +216,23 @@ const MainBanner: React.FC = () => {
 
               <Button
                 variant="contained"
+                onClick={handleSubmit}
+                disabled={!isEmailValid(email) || loading} // Deshabilitar si está cargando o el email no es válido
                 sx={{
-                  bgcolor: "#7373FF",
-                  opacity: 0.3,
+                  bgcolor: loading ? "#b3b3b3" : "#7373FF", // Cambiar color cuando está cargando
                   color: "#fff",
-                  padding: { xs: "0.5rem 1rem", sm: "0.8rem 2rem" }, // Responsive padding
+                  padding: { xs: "0.5rem 1rem", sm: "0.8rem 2rem" },
                   borderRadius: "25px",
                   textTransform: "none",
                   fontWeight: 700,
                   "&:hover": {
-                    bgcolor: "#5a55e3",
+                    bgcolor: loading ? "#b3b3b3" : "#5a55e3",
                   },
                 }}
               >
-                Unirse
+                {loading ? <CircularProgress size={24} color="inherit" /> : "Unirse"}
               </Button>
             </Box>
-
-            <Typography
-              variant="body2"
-              sx={{
-                color: "#4B5563",
-                fontWeight: 500,
-                fontSize: { xs: "12px", sm: "14px", md: "15px" }, // Responsive font size
-              }}
-            >
-              Recibe una notificación cuando SPACE esté disponible
-            </Typography>
           </Box>
         </Box>
       </Box>
