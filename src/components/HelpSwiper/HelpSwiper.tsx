@@ -14,32 +14,32 @@ const HelpSwiper: React.FC = () => {
     {
       title: "Conexiones Valiosas",
       description:
-        "Amplía tu red y conoce estudiantes con intereses y habilidades complementarias para fortalecer tus proyectos.",
+        "Descubre estudiantes con intereses y habilidades que complementen tus proyectos. Crea conexiones auténticas y lleva tus ideas al siguiente nivel.",
     },
     {
       title: "Oportunidades de Crecimiento",
       description:
-        "Descubre iniciativas y colaboraciones que te ayudarán a desarrollar nuevas competencias y experiencias.",
+        "Participa en colaboraciones y experiencias diseñadas para desarrollar nuevas competencias, explorar intereses y fortalecer tu carrera.",
     },
     {
-      title: "Comunidad de Apoyo",
+      title: "Noticias On Campus",
       description:
-        "Accede a una red de estudiantes solidarios dispuestos a colaborar y compartir sus conocimientos contigo.",
+        "Mantente informado con los eventos, actividades y noticias más relevantes de tu universidad en tiempo real.",
     },
     {
       title: "Marketplace Estudiantil",
       description:
-        "Compra, vende o intercambia artículos y servicios dentro de tu comunidad universitaria de manera segura y fácil.",
+        "Compra, vende o intercambia productos y servicios en un entorno seguro, accesible y diseñado para estudiantes.",
     },
     {
-      title: "Colaboraciones entre Carreras",
+      title: "Freelancers y Emprendedores",
       description:
-        "Participa en proyectos multidisciplinarios y conecta con estudiantes de diferentes áreas académicas y profesionales.",
+        "Promociona tus habilidades, servicios o proyectos. Encuentra clientes, socios y oportunidades para impulsar tu negocio dentro del campus.",
     },
     {
-      title: "Recursos Exclusivos para Estudiantes",
+      title: "Espacios y Roomies",
       description:
-        "Accede a herramientas y oportunidades diseñadas para maximizar tu experiencia universitaria y profesional.",
+        "Encuentra el lugar ideal cerca de tu campus o publica espacios disponibles. Conecta con roomies que compartan tu estilo de vida.",
     },
   ];
 
@@ -108,8 +108,8 @@ const HelpSwiper: React.FC = () => {
                 <Card
                   sx={{
                     borderRadius: "50px",
-                    px: { xs: "1.5rem", md: "2rem" },
-                    py: { xs: "3.5rem", md: "5rem" },
+                    px: { xs: "1rem", md: "1.5rem" },
+                    py: { xs: "2rem", md: "4rem" },
                     boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.1)",
                     transition: "transform 0.3s, background 0.3s",
                     "&:hover": {
@@ -127,7 +127,7 @@ const HelpSwiper: React.FC = () => {
                       fontWeight: 600,
                       marginBottom: "1rem",
                       color: "#2C2C2C",
-                      fontSize: { xs: "20px", md: "24px" },
+                      fontSize: { xs: "16px", md: "24px" },
                     }}
                   >
                     {item.title}
@@ -136,7 +136,7 @@ const HelpSwiper: React.FC = () => {
                     variant="body2"
                     sx={{
                       color: "#4B5563",
-                      fontSize: { xs: "16px", md: "18px" },
+                      fontSize: { xs: "14px", md: "18px" },
                     }}
                   >
                     {item.description}
