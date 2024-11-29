@@ -12,6 +12,7 @@ import HelpSwiper from "@components/HelpSwiper/HelpSwiper";
 import Counter from "@components/Counter/Counter";
 import Footer from "@components/Footer/Footer";
 import "react-toastify/dist/ReactToastify.css";
+import { WavyBackgroundDemo } from "@components/WavyBackgroundDemo/WavyBackgroundDemo";
 
 const Home: NextPage = () => {
   return (
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
         <MainBanner />
         <About />
         <Discover />
+        <WavyBackgroundDemo />
         <HelpSwiper />
         <Counter />
         <Footer />
