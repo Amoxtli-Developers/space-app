@@ -80,6 +80,7 @@ const MainBanner: React.FC = () => {
           padding: { xs: 0, sm: "2rem" },
           mb: { xs: 0, md: "2rem" },
         }}
+        id="home"
       >
         <Box
           sx={{
@@ -253,6 +254,20 @@ const MainBanner: React.FC = () => {
                 )}
               </Button>
             </Box>
+
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#2c2c2c",
+                fontSize: { xs: "12px", sm: "14px", md: "16px" },
+                fontWeight: 500,
+                textAlign: "center",
+                maxWidth: { xs: "250px", sm: "400px", md: "550px" },
+              }}
+            >
+              Tu registro te permitirá ser uno de los primeros en probar{" "}
+              <strong style={{ color: "#7373FF" }}>Space App</strong>.
+            </Typography>
           </Box>
         </Box>
       </Box>
