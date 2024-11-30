@@ -76,7 +76,11 @@ const handler = async (
             <p>
                 <strong>Email registrado:</strong> ${email}
             </p>
-            <p style="margin-top: 20px;">Mientras tanto, síguenos en nuestras redes sociales para estar al tanto de las últimas novedades y actualizaciones.</p>
+            <p style="margin-top: 20px;">Mientras tanto, síguenos en nuestras redes sociales para estar al tanto de las últimas novedades y actualizaciones:</p>
+            <div style="margin-top: 20px; text-align: center; font-size: 16px;">
+                <p><a href="https://www.instagram.com/amoxtli.tech/" target="_blank" rel="noopener noreferrer" style="color: #7373FF; text-decoration: none;">Instagram</a></p>
+                <p><a href="https://www.linkedin.com/company/amoxtli-web-developers" target="_blank" rel="noopener noreferrer" style="color: #7373FF; text-decoration: none;">LinkedIn</a></p>
+            </div>
             <p style="color: #7373FF; font-weight: bold; margin-top: 20px;">
                 ¡Gracias por ser parte de Space App!
             </p>
