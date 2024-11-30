@@ -1,24 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { WavyBackground } from "@components/WavyBackground/WavyBackground";
 import { Box, Button } from "@mui/material";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 export function WavyBackgroundDemo() {
-  const [isHovered, setIsHovered] = useState(false); // Estado para manejar el hover
+  const [isHovered, setIsHovered] = useState(false); 
+  const [isTouchDevice, setIsTouchDevice] = useState(false); 
+
+  useEffect(() => {
+    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   return (
     <WavyBackground>
       <Box
         sx={{
           maxWidth: {
-            xs: "100%",
+            xs: "90%",
             sm: "90%",
             md: "80%",
             lg: "70%",
             xl: "60%",
           },
-          textAlign: "center", // Asegura que todo esté centrado
+          textAlign: "center",
         }}
       >
         <p className="text-2xl md:text-4xl lg:text-7xl text-[#f0f1f6] font-bold inter-var text-center">
@@ -29,8 +34,7 @@ export function WavyBackgroundDemo() {
           la lista de espera ahora.
         </p>
 
-        {/* Botón */}
-        <Box sx={{display: "flex", justifyContent: "center"}}>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Button
             variant="contained"
             fullWidth
@@ -54,10 +58,9 @@ export function WavyBackgroundDemo() {
               justifyContent: "center",
               width: "300px",
             }}
-            onMouseEnter={() => setIsHovered(true)} // Detecta cuando el mouse entra
-            onMouseLeave={() => setIsHovered(false)} // Detecta cuando el mouse sale
+            onMouseEnter={() => !isTouchDevice && setIsHovered(true)}
+            onMouseLeave={() => !isTouchDevice && setIsHovered(false)}
             onClick={() => {
-              // Smooth scroll al contenedor con el ID "home"
               const element = document.getElementById("home");
               if (element) {
                 element.scrollIntoView({ behavior: "smooth" });
