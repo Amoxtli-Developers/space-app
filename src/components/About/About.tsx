@@ -207,10 +207,7 @@ const About: React.FC = () => {
                 }}
               >
                 En esta fase inicial, Space App está diseñada específicamente
-                para estudiantes del{" "}
-                <span style={{ fontWeight: 600, color: "#6c63ff" }}>
-                  Tecnológico de Monterrey, Campus CCM
-                </span>
+                para un pequeño grupo de <span style={{ fontWeight: 600, color: "#6c63ff" }}>estudiantes</span>
                 . Nuestro objetivo es construir una comunidad sólida y activa
                 que permita a los estudiantes explorar todas las posibilidades
                 que la plataforma ofrece.
